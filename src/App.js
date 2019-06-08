@@ -5,12 +5,14 @@ import { ToDoForm } from './components/TodoForm';
 import { SearchForm } from './components/SearchForm';
 import { Provider } from './context';
 
+import uuid from 'uuid/v4';
+
 class App extends React.Component {
   state = {
     todos: [
-      { text: 'foo', completed: false },
-      { text: 'bar', completed: true },
-      { text: 'zoo', completed: false }
+      { text: 'foo', completed: false, id: uuid() },
+      { text: 'bar', completed: true, id: uuid() },
+      { text: 'zoo', completed: false, id: uuid() }
     ],
     search: ''
   };
@@ -23,14 +25,14 @@ class App extends React.Component {
   }
 
   createToDo(text) {
-    this.setState(state => ({ todos: [...state.todos, { text }] }));
+    this.setState(state => ({ todos: [...state.todos, { text, id: uuid() }] }));
   }
 
-  toggleToDo(text) {
+  toggleToDo(todoId) {
     this.setState(state => ({
       todos: state.todos.map(
         todo =>
-          todo.text === text ? { ...todo, completed: !todo.completed } : todo
+          todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
       )
     }));
   }

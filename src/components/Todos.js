@@ -9,7 +9,7 @@ export const ToDos = ({ todos = [] }) => {
         {state => (
           <Fragment>
             {todos.map(todo => (
-              <ToDo key={todo.text} todo={todo} toggleToDo={state.toggleToDo} />
+              <ToDo key={todo.id} todo={todo} toggleToDo={state.toggleToDo} />
             ))}
           </Fragment>
         )}
